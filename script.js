@@ -4,7 +4,7 @@ const get_data = async () => {
   try {
     const response = await fetch("https://api.npoint.io/d6bd0efc05639084eb17/");
     const g = await response.json();
-    console.log(g);
+    // console.log(g);
 
     container = document.querySelector(".cards-container");
     for (let i = 0; i < g.playerList.length; i++) {
@@ -28,8 +28,6 @@ const get_data = async () => {
     return a.pfname < b.pfname ? -1 : 1;
   });
 
-  console.log(arr);
-
   for (let i = 0; i < arr.length; i++) {
     try {
       let card = document.createElement("div");
@@ -39,7 +37,7 @@ const get_data = async () => {
       img.src = `./player-images/${arr[i].id}.jpg`;
 
       card.appendChild(img);
-      console.log(card);
+      // console.log(card);
       const desc = document.createElement("div");
       desc.className = "desc";
 
@@ -73,10 +71,12 @@ const get_data = async () => {
   const form = document.querySelector(".form");
   form.addEventListener("submit", (e) => e.preventDefault());
   const input = document.querySelector("#search");
-  console.log(input);
+  // console.log(input);
 
+  let is_results = Array(container.children.length).fill(true);
+  console.log(is_results);
   input.addEventListener("keyup", (e) => {
-    console.log(container);
+    // console.log(container);
     for (let i = 0; i < container.children.length; i++) {
       const curr_card = container.children[i];
       let curr_pfname = curr_card
@@ -87,18 +87,24 @@ const get_data = async () => {
         .querySelector(".tname")
         .innerText.toLowerCase();
 
-      console.log(
-        curr_pfname.indexOf(e.target.value.toLowerCase()),
-        e.target.value
-      );
       if (
         curr_pfname.indexOf(e.target.value.toLowerCase()) === -1 &&
         curr_tname.indexOf(e.target.value.toLowerCase()) === -1
       ) {
         curr_card.style.display = "none";
+        is_results[i] = false;
       } else {
         curr_card.style.display = "block";
+        is_results[i] = true;
       }
+    }
+
+    const element = document.querySelector(".no_results");
+    const check = is_results.some((x) => x === true);
+    if (!check) {
+      element.innerText = "No result found with this query";
+    } else {
+      element.innerText = "";
     }
   });
 };
