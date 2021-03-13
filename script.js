@@ -59,7 +59,14 @@ const get_data = async () => {
       const next_match = document.createElement("div");
       next_match.className = "next_match";
       next_match.textContent =
-        "Next Match Date: " + new Date(arr[i].next_match).toLocaleDateString();
+        "Next Match Date: " +
+        new Date(arr[i].next_match).toLocaleDateString() +
+        " " +
+        new Date(arr[i].next_match).getHours() +
+        ":" +
+        new Date(arr[i].next_match).getMinutes() +
+        ":" +
+        new Date(arr[i].next_match).getSeconds();
       desc.appendChild(next_match);
       card.appendChild(desc);
       container.appendChild(card);
