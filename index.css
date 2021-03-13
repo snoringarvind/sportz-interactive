@@ -1,0 +1,47 @@
+.desc {
+  padding: 10px;
+}
+
+.cards-container {
+  /* border: 1px solid; */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  /* margin: auto; */
+}
+
+.card {
+  border: 1px solid black;
+  flex-basis: 33.33%;
+  margin: 10px;
+}
+
+.card img {
+  width: 100%;
+}
+.pfname {
+  /* border: 1px solid red; */
+  padding: 2px;
+}
+
+.skill {
+  /* border: 1px solid green; */
+  padding: 2px;
+}
+
+.next_match {
+  /* border: 1px solid blue; */
+}
+
+.form input {
+  padding: 5px;
+  font-size: 1.2rem;
+  width: 50%;
+  margin-bottom: 20px;
+}
+
+@media all and (max-width: 700px) {
+  .card {
+    flex-basis: 100%;
+  }
+}
